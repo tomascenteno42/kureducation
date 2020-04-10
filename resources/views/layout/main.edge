@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  
+  {{ style('style') }}
+
+  <title>
+      @!section('title')
+  </title>
+</head>
+
+<body>
+  <header>
+      
+    <nav class="nav">
+        <a href="/">Inicio</a>
+        @loggedIn
+        <a href="/careers" style="margin-Left: auto">Careers</a>
+        <a href="/logout">Log out</a>  
+        @else
+        <a href="/login" style="margin-left: auto">Log in</a>
+        <a href="/signup">Sign up</a>
+        @endloggedIn
+        
+    </nav>
+  </header>
+
+  <div class="container">
+      @!section('content')
+  </div>
+</body>
+</html>

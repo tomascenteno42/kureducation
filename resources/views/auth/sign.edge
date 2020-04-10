@@ -1,0 +1,39 @@
+@layout('layout/main');
+
+@section('title')
+Kureducation - Join the team
+@endsection
+
+
+@section('content')
+<div class="form-container">
+    <form action="{{ route('UserController.sign') }}" method="POST">
+        {{ csrfField() }}
+
+        <h1>Sign up!</h1>
+        <label for="username">Username</label>
+        <input name="username" type="text" value="{{ old('username', '')}}">
+        @if(hasErrorFor('username'))
+            <span>
+                {{ getErrorFor('username') }}
+            </span>
+        @endif
+        <label for="email">Email</label>
+        <input name="email" type="text" value='{{ old('email', '') }}'>
+        @if(hasErrorFor('email'))
+            <span>
+                {{ getErrorFor('email') }}
+            </span>
+        @endif
+        <label for="password">Password</label>
+        <input name="password" type="password">
+        @if(hasErrorFor('password'))
+            <span>
+                {{ getErrorFor('password') }}
+            </span>
+        @endif
+
+        <button type="submit" class="button">Join now!</button>
+    </form>
+</div>
+@endsection
