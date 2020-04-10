@@ -8,7 +8,6 @@ class CareerController {
 
         const career = new Career;
 
-
         return view.render('/index', { career: career.toJSON() })
     }
 }

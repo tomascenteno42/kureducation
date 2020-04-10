@@ -15,8 +15,36 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
+const User = use('App/Models/User');
+(async () => {
+    try{
+        const user = await User.query().where({email: 'kurepa@superadmin.com'}).fetch()
 
-Route.get('/', 'CareerController.home');
+        if(!user) {
+            try {
+                const usuario = await User.create({
+                    username: process.env.SUPERADMIN_USERNAME,
+                    email: process.env.SUPERADMIN_EMAIL,
+                    password: process.env.SUPERADMIN_PASSWORD,
+                    superadmin: true
+    
+                })
+                console.log(usuario)    
+            } catch (error) {
+                console.log(error);
+            }
+            
+        }    
+    }catch(error) {
+        console.log(error)
+    }
+    
+})()
+
+
+
+Route.get('/', 'SubjectController.home');
+
 
 Route.on('/signup').render('/auth/sign');
 Route.post('/signup', 'UserController.sign').validator('registerUser');
@@ -30,5 +58,8 @@ Route.get('/logout', async({ auth, response }) => {
 
     return response.redirect('/')
 });
+
+Route.on('/careers').render('careers')
+
 
 

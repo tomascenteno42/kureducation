@@ -7,10 +7,10 @@ Kureducation - Join the team
 
 @section('content')
 <div class="form-container">
-    <form action="{{ route('UserController.sign') }}" method="POST">
+    <form action="{{ route('UserController.sign') }}" method="POST" class="sign_form">
         {{ csrfField() }}
 
-        <h1>Sign up!</h1>
+        <h1 class="title">Sign up!</h1>
         <label for="username">Username</label>
         <input name="username" type="text" value="{{ old('username', '')}}">
         @if(hasErrorFor('username'))
@@ -32,6 +32,12 @@ Kureducation - Join the team
                 {{ getErrorFor('password') }}
             </span>
         @endif
+        <label for="career">Career</label>
+        <input list="careers" name="career">
+        <datalist id="careers">
+            <option value="Analisis de sistemas">
+        </datalist>
+       
 
         <button type="submit" class="button">Join now!</button>
     </form>

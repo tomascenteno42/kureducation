@@ -1,7 +1,8 @@
 @layout('layout/main');
 
+
 @section('title')
-kureducation - Log in
+Kureducation - careers
 @endsection
 
 
@@ -13,7 +14,7 @@ kureducation - Log in
     <form action="{{ route('UserController.log') }}" method="POST">
         {{ csrfField() }}
 
-        <h1 class="title">Log in!</h1>
+        <h1>Log in!</h1>
 
         <label for="email">Email</label>
         <input name="email" type="email" value='{{ old('email', '') }}'>
