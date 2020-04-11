@@ -6,9 +6,8 @@ class CareerController {
 
     async home({ view }) {
 
-        const career = new Career;
-
-        return view.render('/index', { career: career.toJSON() })
+        const careers = await Career.query().fetch();
+        return view.render('/personalize', { careers: careers.toJSON() })
     }
 }
 

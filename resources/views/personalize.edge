@@ -1,0 +1,22 @@
+@layout('layout/main');
+
+
+@section('title')
+Kureducation - personalize
+@endsection
+
+
+@section('content')
+<div class="container">
+    <form action="">
+        <label for="career">Select the career</label>
+        <input list="careers" name="career">
+        @each(career in careers)
+        <datalist id="careers">
+            <option value="{{ career.id }}">{{ career.name  }} </option>
+        </datalist>
+        @endeach
+        <button type="submit" class="button">See</button>
+    </form>
+</div>
+@endsection

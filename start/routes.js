@@ -43,11 +43,12 @@ const User = use('App/Models/User');
 
 
 
-Route.get('/', 'SubjectController.home');
+Route.get('/personalize', 'CareerController.home');
 
 
-Route.on('/signup').render('/auth/sign');
 Route.post('/signup', 'UserController.sign').validator('registerUser');
+Route.get('/signup', 'UserController.signForm');
+
 
 
 Route.on('/login').render('auth/login');

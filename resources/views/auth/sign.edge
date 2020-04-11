@@ -33,10 +33,12 @@ Kureducation - Join the team
             </span>
         @endif
         <label for="career">Career</label>
-        <input list="careers" name="career">
-        <datalist id="careers">
-            <option value="Analisis de sistemas">
-        </datalist>
+        <select id="careers" name="career_id">
+            @each(career in careers)
+                <option value={{ career.id }}>{{ career.name }} </option>
+            @endeach
+        </select>
+        
        
 
         <button type="submit" class="button">Join now!</button>
