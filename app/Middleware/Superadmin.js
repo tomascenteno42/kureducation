@@ -9,9 +9,12 @@ class Superadmin {
    * @param {Request} ctx.request
    * @param {Function} next
    */
-  async handle ({ request }, next) {
-    // call next to advance the request
-    await next()
+  async handle ({ request, auth}, next) {
+    if(auth.user.superadmin) {
+      console.log('sos superadmin')
+    
+      await next()
+  }
   }
 }
 

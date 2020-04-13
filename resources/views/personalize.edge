@@ -10,13 +10,13 @@ Kureducation - personalize
 <div class="container">
     <form action="">
         <label for="career">Select the career</label>
-        <input list="careers" name="career">
+        
         @each(career in careers)
-        <datalist id="careers">
+        <select id="careers">
             <option value="{{ career.id }}">{{ career.name  }} </option>
-        </datalist>
+        </select>
         @endeach
-        <button type="submit" class="button">See</button>
+        <button type="submit" class="button">Calculate!</button>
     </form>
 </div>
 @endsection
