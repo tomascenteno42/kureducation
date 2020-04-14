@@ -1,0 +1,37 @@
+@layout('layout/main')
+
+
+@section('title')
+Kureducation - Superadmin  
+@endsection
+
+@section('content')
+<div class="flash-message">
+    @if(flashMessage('message'))
+        <span>{{ flashMessage('message') }}</span>
+    @endif
+</div>
+<div class="form-container">
+    
+    <form action="{{ route('CareerController.join') }}" method="POST" class="sign_form">
+
+        {{ csrfField() }}
+        
+        <label for="career">Career</label>
+        <select id="careers" name="career_id">
+            @each(career in careers)
+                <option value={{ career.id }}>{{ career.name }} </option>
+            @endeach
+        </select> 
+     
+        @each(subject in subjects)
+            <fieldset>
+                <label for="subject_id">{{ subject.name }}</label>
+            <input type="checkbox" name="subject_id" value={{ subject.id }}>
+            </fieldset>          
+        @endeach    
+
+        <button type="submit" class="button">Create!</button>
+    </form>
+</div> 
+@endsection

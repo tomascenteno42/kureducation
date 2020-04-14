@@ -10,10 +10,17 @@ class SubjectController {
         return view.render('/index', { subject: subject.toJSON() })
     }
 
-    async create({ }) {
-        const careers = await Career.query().fetch();
+    async create({ view }) {
 
-        return view.render('/careers/:id/subjects',{ careers: careers.toJSON() })
+        return view.render('superadmin/subjects')
+    }
+
+    async store({ response, request, session }) {
+       const subject = await Subject.create(request.only(['name']))
+
+       session.flash({ message: `${subject.name} has been stored` });
+
+       return response.redirect('/subjects');
     }
 }
 

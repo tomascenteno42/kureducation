@@ -6,18 +6,21 @@ Kureducation - Superadmin
 @endsection
 
 @section('content')
+<div class="flash-message">
+    @if(flashMessage('message'))
+        <span>{{ flashMessage('message') }}</span>
+    @endif
+</div>
 <div class="form-container">
+    
     <form action="{{ route('SubjectController.store') }}" method="POST" class="sign_form">
 
         {{ csrfField() }}
-        
-        <select id="careers" name="career_id">
-            @each(career in careers)
-                <option value={{ career.id }}>{{ career.name }} </option>
-            @endeach
-        </select>
+        <label for="name">New Subject</label>
+        <input type="text" name="name">
+       
 
-        <button type="submit" class="button">Create and Join!</button>
+        <button type="submit" class="button">Create!</button>
     </form>
 </div> 
 @endsection

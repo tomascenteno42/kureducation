@@ -40,7 +40,16 @@ Route.group(() => {
     Route.get('/', 'CareerController.create');
     Route.post('/', 'CareerController.store');
 
-    // Route.get('/:id/subjects', 'SubjectController.create');
-    // Route.get('/:id/subjects', 'SubjectController.store');
+   
 
 }).prefix('/careers').middleware('superadmin');
+
+Route.group(() => {
+    Route.get('/', 'SubjectController.create');
+    Route.post('/', 'SubjectController.store'); 
+}).prefix('/subjects').middleware('superadmin')
+
+Route.group(() => {
+    Route.get('/', 'CareerController.joinForm');
+    Route.post('/', 'CareerController.join'); 
+}).prefix('/join').middleware('superadmin')

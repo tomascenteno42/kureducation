@@ -15,9 +15,27 @@ class CareerController {
         return view.render('superadmin/careers')
     }
 
-    async store({ request, response }) {
+    async store({ request, response, session }) {
         const career = await Career.create(request.only(['name']))
+
+        session.flash({ message: `${career.name} has been created` })
         return response.redirect('/careers');
+    }
+
+    async joinForm({ view }) {
+        const careers = await Career.query().fetch();
+        const subjects = await Subject.query().fetch();
+        return view.render('superadmin/career_subject', { careers: careers.toJSON(), subjects: subjects.toJSON() })
+    }
+
+    async join({ request }) {
+        const career = await Career.find(request.body.career_id)
+        const subject = await Subject.find(request.body.subject_id)
+
+        await career.subjects().attach([subject.id])
+        console.log(career)
+        console.log(subject)
+
     }
 }
 

@@ -16,8 +16,10 @@
     <nav class="nav">
 
         <a href="/">Inicio</a>
-        @if(auth.user.superadmin)
+        @if(auth.user.superadmin) 
           <a href="/careers" class="ml-auto">Careers</a>
+          <a href="/subjects" >Subjects</a>
+          <a href="/join">Join</a>
           <a href="/logout">Log out</a>  
         @else
         @loggedIn

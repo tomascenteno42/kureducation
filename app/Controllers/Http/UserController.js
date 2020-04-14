@@ -5,6 +5,12 @@ const Career = use('App/Models/Career');
 
 
 class UserController {
+    async signForm({ view }) {
+        const careers = await Career.query().fetch();
+
+
+        return view.render('/auth/sign',{ careers: careers.toJSON() })
+    }
 
     async sign({ response, request, auth, view }) {
         
@@ -16,14 +22,6 @@ class UserController {
 
         return response.redirect('/')
     }
-
-    async signForm({ view }) {
-        const careers = await Career.query().fetch();
-
-
-        return view.render('/auth/sign',{ careers: careers.toJSON() })
-    }
-
 
     async log({ response, request, auth, session }) {
         const { email, password } = request.all();

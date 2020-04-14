@@ -6,7 +6,13 @@ Kureducation - Superadmin
 @endsection
 
 @section('content')
+<div class="flash-message">
+    @if(flashMessage('message'))
+        <span>{{ flashMessage('message') }}</span>
+    @endif
+</div>
 <div class="form-container">
+    
     <form action="{{ route('CareerController.store') }}" method="POST" class="sign_form">
 
         {{ csrfField() }}
