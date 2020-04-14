@@ -14,15 +14,10 @@
 */
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
-const Route = use('Route')
-const User = use('App/Models/User');
-
-
-
-
+const Route = use('Route');
 
 Route.on('/').render('/index')
-Route.get('/personalize', 'CareerController.home').middleware('superadmin');
+Route.get('/personalize', 'CareerController.home');
 
 
 Route.post('/signup', 'UserController.sign').validator('registerUser');
@@ -39,7 +34,13 @@ Route.get('/logout', async({ auth, response }) => {
     return response.redirect('/')
 });
 
-Route.on('/careers').render('careers')
 
+// SUPERADMIN
+Route.group(() => {
+    Route.get('/', 'CareerController.create');
+    Route.post('/', 'CareerController.store');
 
+    // Route.get('/:id/subjects', 'SubjectController.create');
+    // Route.get('/:id/subjects', 'SubjectController.store');
 
+}).prefix('/careers').middleware('superadmin');

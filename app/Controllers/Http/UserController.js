@@ -9,9 +9,7 @@ class UserController {
     async sign({ response, request, auth, view }) {
         
         const user = await User.create(request.only(['username', 'email', 'password']))
-        console.log(user)
         const career = await Career.find(request.body.career_id)
-        console.log(career)
         await user.careers().attach([career.id])
 
         await auth.login(user);

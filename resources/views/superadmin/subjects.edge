@@ -1,0 +1,23 @@
+@layout('layout/main')
+
+
+@section('title')
+Kureducation - Superadmin  
+@endsection
+
+@section('content')
+<div class="form-container">
+    <form action="{{ route('SubjectController.store') }}" method="POST" class="sign_form">
+
+        {{ csrfField() }}
+        
+        <select id="careers" name="career_id">
+            @each(career in careers)
+                <option value={{ career.id }}>{{ career.name }} </option>
+            @endeach
+        </select>
+
+        <button type="submit" class="button">Create and Join!</button>
+    </form>
+</div> 
+@endsection

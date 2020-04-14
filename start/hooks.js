@@ -6,7 +6,6 @@ hooks.before.httpServer(async () => {
         const User = use('App/Models/User')
         try{
             const user = await User.query().where({email: process.env.SUPERADMIN_EMAIL}).first()
-            console.log(user)
             if(!user) {
                 try {
                     const usuario = await User.create({

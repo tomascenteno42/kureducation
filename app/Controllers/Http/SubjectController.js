@@ -10,6 +10,11 @@ class SubjectController {
         return view.render('/index', { subject: subject.toJSON() })
     }
 
+    async create({ }) {
+        const careers = await Career.query().fetch();
+
+        return view.render('/careers/:id/subjects',{ careers: careers.toJSON() })
+    }
 }
 
 module.exports = SubjectController

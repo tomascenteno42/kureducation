@@ -14,15 +14,21 @@
   <header>
       
     <nav class="nav">
+
         <a href="/">Inicio</a>
-        <a class="kureducation">Kureducation</a>
+        @if(auth.user.superadmin)
+          <a href="/careers" class="ml-auto">Careers</a>
+          <a href="/logout">Log out</a>  
+        @else
         @loggedIn
-        <a href="/personalize" style="margin-Left: auto">Personalize</a>
+        <a href="/personalize" class="ml-auto">Personalize</a>
         <a href="/logout">Log out</a>  
         @else
-        <a href="/login" style="margin-left: auto">Log in</a>
+        <a href="/login" class="ml-auto">Log in</a>
         <a href="/signup">Sign up</a>
-        @endloggedIn
+        @endloggedIn  
+        @endif
+        
         
     </nav>
   </header>

@@ -1,0 +1,20 @@
+@layout('layout/main')
+
+
+@section('title')
+Kureducation - Superadmin  
+@endsection
+
+@section('content')
+<div class="form-container">
+    <form action="{{ route('CareerController.store') }}" method="POST" class="sign_form">
+
+        {{ csrfField() }}
+        
+        <label for="career">Career</label>
+        <input id="careers" name="name" type="text"></input>       
+
+        <button type="submit" class="button">Create!</button>
+    </form>
+</div> 
+@endsection
