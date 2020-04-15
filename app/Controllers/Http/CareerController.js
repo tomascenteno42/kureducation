@@ -29,12 +29,16 @@ class CareerController {
     }
 
     async join({ request }) {
-        const career = await Career.find(request.body.career_id)
-        const subject = await Subject.find(request.body.subject_id)
-
-        await career.subjects().attach([subject.id])
-        console.log(career)
-        console.log(subject)
+        try {
+            const career = await Career.find(request.body.career_id)
+            const subject = await Subject.find(request.body.subject_id)
+            
+            await career.subjects().attach([subject.id])
+        } catch (error) {
+            console.log(error)
+        }
+       
+  
 
     }
 }

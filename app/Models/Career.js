@@ -12,7 +12,7 @@ class Career extends Model {
     subjects () {
         return this
           .belongsToMany('App/Models/Subject')
-          .pivotTable();
+          .pivotTable('career_subjects');
     }
 }
 
