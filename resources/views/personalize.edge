@@ -8,15 +8,21 @@ Kureducation - personalize
 
 @section('content')
 <div class="container">
-    <form action="">
+    <form action="" class="personalize_f">
         <label for="career">Select the career</label>
-        
-        @each(career in careers)
         <select id="careers">
+
+        @each(career in careers)
             <option value="{{ career.id }}">{{ career.name  }} </option>
-        </select>
         @endeach
+    </select>
+
         <button type="submit" class="button">Calculate!</button>
     </form>
+</div>
+
+<div class="programs">
+    <div class="uba_program"></div>
+    <div class="new_program"></div>
 </div>
 @endsection

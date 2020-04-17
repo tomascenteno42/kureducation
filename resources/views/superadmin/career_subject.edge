@@ -16,22 +16,25 @@ Kureducation - Superadmin
     <form action="{{ route('CareerController.join') }}" method="POST" class="sign_form">
 
         {{ csrfField() }}
-        
-        <label for="career">Career</label>
-        <select id="careers" name="career_id">
-            @each(career in careers)
-                <option value={{ career.id }}>{{ career.name }} </option>
-            @endeach
-        </select> 
-     
-        @each(subject in subjects)
-            <fieldset>
-                <label for="subject_id">{{ subject.name }}</label>
-                <input type="checkbox" name="subject_id" value={{ subject.id }}>
-            </fieldset>          
-        @endeach    
+        <div class="container_s">
+            <label for="career">Career</label>
+            <select id="careers" name="career_id">
+                @each(career in careers)
+                    <option value={{ career.id }}>{{ career.name }} </option>
+                @endeach
+            </select> 
+        </div>
+        <div class="container_fs">
+            <label for=""></label>
+            @each(subject in subjects)
+                <fieldset>
+                    <label for="subject_id">{{ subject.name }}</label>
+                    <input type="checkbox" name="subjects_id[]" value={{ subject.id }}>
+                </fieldset>          
+            @endeach    
+        </div>
 
-        <button type="submit" class="button">Create!</button>
+        <button type="submit" class="button">Join!</button>
     </form>
 </div> 
 @endsection

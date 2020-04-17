@@ -11,6 +11,20 @@ Kureducation - Superadmin
         <span>{{ flashMessage('message') }}</span>
     @endif
 </div>
+<div class="career_container">
+    @each(career in careers)
+        <div class="career">
+            <a href="/careers/edit/{{ career.id }}" class="career_name">{{career.name}}</a>
+        <a href="{{ route()}}"></a>
+            <form action="/careers/{{ career.id }}?_method=DELETE" method="POST" >
+                {{ csrfField() }}
+
+                <button type="submit" class="delete">Delete</button>
+            </form>
+        </div>  
+    @endeach
+
+</div>
 <div class="form-container">
     
     <form action="{{ route('CareerController.store') }}" method="POST" class="sign_form">

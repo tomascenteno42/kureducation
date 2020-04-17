@@ -54,6 +54,7 @@ form input {
     color: white;
     border: none;
     margin: 0 auto;
+    margin-top: 5px;
     
 }
 
@@ -69,3 +70,46 @@ form input {
     text-align: center;
 }
 
+.container_fs{
+    margin-top: 10px;
+}
+.container_fs fieldset {
+    margin: 5px 0px;
+}
+.container_s select{
+    padding: 5px;
+    width: auto;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    width: auto;
+}
+label{
+    text-align: center;
+    margin-top: 5px;
+}
+
+.programs{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.uba_program{
+    width: 50%;
+    height: 79vh;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 20px;
+    border: 5px solid;
+
+}
+.new_program{
+    width: 50%;
+    height: 79vh;
+    margin-right: 5px;
+    border-radius: 20px;
+    border: 5px solid blue
+
+}

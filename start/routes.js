@@ -37,10 +37,11 @@ Route.get('/logout', async({ auth, response }) => {
 
 // SUPERADMIN
 Route.group(() => {
-    Route.get('/', 'CareerController.create');
+    Route.get('/', 'CareerController.careers');
     Route.post('/', 'CareerController.store');
-
-   
+    Route.get('/:id/subjects', 'CareerController.joinForm');
+    Route.delete('/:id', 'CareerController.delete');
+    
 
 }).prefix('/careers').middleware('superadmin');
 
@@ -52,4 +53,4 @@ Route.group(() => {
 Route.group(() => {
     Route.get('/', 'CareerController.joinForm');
     Route.post('/', 'CareerController.join'); 
-}).prefix('/join').middleware('superadmin')
+}).prefix('/join').middleware('superadmin');

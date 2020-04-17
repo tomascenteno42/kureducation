@@ -14,7 +14,6 @@ hooks.before.httpServer(async () => {
                         password: process.env.SUPERADMIN_PASSWORD,
                         superadmin: true
                     })
-                      
                 } catch (error) {
                     console.log(error);
                 }
