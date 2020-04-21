@@ -7,30 +7,30 @@ kureducation - Log in
 
 @section('content')
 <div class="form-container">
-    @if(flashMessage('loginError'))
-        <span>{{ flashMessage('loginError') }}</span>
-    @endif
-    <form action="{{ route('UserController.log') }}" method="POST">
+    <form action="{{ route('UserController.log') }}" class="log_form" method="POST">
         {{ csrfField() }}
 
-        <h1 class="title">Log in!</h1>
-
-        <label for="email">Email</label>
-        <input name="email" type="email" value='{{ old('email', '') }}'>
-        @if(hasErrorFor('email'))
-            <span>
-                {{ getErrorFor('email') }}
-            </span>
-        @endif
-
+        <h1>Log in!</h1>
+        <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Username" value='{{ old('username', '') }}'>
+            @if(hasErrorFor('username'))
+                <div class="alert alert-warning" role="alert">
+                    {{ getErrorFor('username') }}
+                </div>
+            @endif
+            
+        </div>
+        <div class="form-group">
         <label for="password">Password</label>
-        <input name="password" type="password">
+        <input type="password" name="password" class="form-control" placeholder="Password">
         @if(hasErrorFor('password'))
-            <span>
+            <div class="alert alert-warning" role="alert">
                 {{ getErrorFor('password') }}
-            </span>
-        @endif
-        <button type="submit" class="button">Log in!</button>
+            </div>
+            @endif
+        </div>
+        <button type="submit" class="btn btn-dark">Log</button>
     </form>
 </div>
 @endsection

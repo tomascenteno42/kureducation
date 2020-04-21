@@ -5,7 +5,7 @@ const Base = require('./Base');
 class LoginUser extends Base {
   get rules () {
     return {
-      email: 'required|email',
+      username: 'required',
       password: 'required'
     }
   }

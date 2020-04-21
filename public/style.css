@@ -8,87 +8,37 @@
     margin-left: auto;
 }
 /*NAVEGACION*/
-.nav {
-    width: 100%;
-    padding: 0 2px;
-    background-color: black;
+.pagination{
+    width: 500px;
     display: flex;
-}
-.nav a {
-    text-decoration: none;
-    color: white;
-    padding: 10px 5px;
-    font-size: 20px;
-}
-.nav a:hover {
-    background-color: rgb(46, 45, 45);
-}
-
-.title {
-    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin: 0;
 }
 /*FORMULARIOS*/
 .form-container{
-    height: 93vh;
+    height: 91vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 300px;
-}
-form input {
-    padding: 5px;
-    border: 2px solid black;
-    margin-bottom: 11px;
-
-}
-.button {
-    width: 100px;
-    padding: 10px;
-    background-color: black;
-    color: white;
-    border: none;
-    margin: 0 auto;
-    margin-top: 5px;
-    
-}
-
-.info_1 {
-    background-color: gray;
-    width: 500px;
-    height: 500px;
-}
-.flash-message {
-    padding: 10px;
-    color: white;
-    background-color: gray;
-    text-align: center;
-}
-
-.container_fs{
-    margin-top: 10px;
-}
-.container_fs fieldset {
-    margin: 5px 0px;
-}
-.container_s select{
-    padding: 5px;
+.career_form{
     width: auto;
 }
-
-.container{
-    display: flex;
-    justify-content: center;
-    width: auto;
+.log_form{
+    width: 400px;
 }
-label{
-    text-align: center;
-    margin-top: 5px;
+/*ICONS*/
+.icon_container{
+    display: flex;
+    justify-content: left;
+    margin-right: auto;
+    flex-direction: row;
+}
+.icon_container svg{
+    width: auto;
+    color: #343a40;
 }
 
 .programs{

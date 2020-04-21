@@ -7,41 +7,50 @@ Kureducation - Join the team
 
 @section('content')
 <div class="form-container">
-    <form action="{{ route('UserController.sign') }}" method="POST" class="sign_form">
+    <form action="{{ route('UserController.sign') }}" method="POST">
         {{ csrfField() }}
 
-        <h1 class="title">Sign up!</h1>
+        <h1>Sign up!</h1>
+        <div class="form-group">
         <label for="username">Username</label>
-        <input name="username" type="text" value="{{ old('username', '')}}">
-        @if(hasErrorFor('username'))
-            <span>
-                {{ getErrorFor('username') }}
-            </span>
-        @endif
-        <label for="email">Email</label>
-        <input name="email" type="text" value='{{ old('email', '') }}'>
-        @if(hasErrorFor('email'))
-            <span>
-                {{ getErrorFor('email') }}
-            </span>
-        @endif
-        <label for="password">Password</label>
-        <input name="password" type="password">
-        @if(hasErrorFor('password'))
-            <span>
-                {{ getErrorFor('password') }}
-            </span>
-        @endif
-        <label for="career">Career</label>
-        <select id="careers" name="career_id">
-            @each(career in careers)
-                <option value={{ career.id }}>{{ career.name }} </option>
-            @endeach
-        </select>
-        
-       
+        <input type="text" name="username" class="form-control" value='{{ old('username', '') }}'>
+            @if(hasErrorFor('username'))
+                <div class="alert alert-warning" role="alert">
+                    {{ getErrorFor('username') }}
+                </div>
+            @endif
+            
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" class="form-control" value='{{ old('email', '') }}'>
+                @if(hasErrorFor('email'))
+                    <div class="alert alert-warning" role="alert">
+                        {{ getErrorFor('email') }}
+                    </div>
+                @endif
+                
+            </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" >
+            @if(hasErrorFor('password'))
+                <div class="alert alert-warning" role="alert">
+                    {{ getErrorFor('password') }}
+                </div>
+            @endif
+        </div>
+        <div class="form-group">
 
-        <button type="submit" class="button">Join now!</button>
+            <label for="careers">Choose your career</label>
+            <select class="custom-select" name="career_id" style= "margin-bottom: 5px">
+                @each(career in careers)
+                <option name="career_idy" value={{ career.id }}>{{ career.name }}</option>
+                @endeach
+            </select>
+        </div>
+        <button type="submit" class="btn btn-dark">Sign in!</button>
     </form>
 </div>
+
 @endsection

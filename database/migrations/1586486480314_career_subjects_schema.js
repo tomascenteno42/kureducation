@@ -7,8 +7,8 @@ class CareerSubjectsSchema extends Schema {
   up () {
     this.create('career_subjects', (table) => {
       table.increments()
-      table.integer('career_id').references().inTable('careers');
-      table.integer('subject_id').references().inTable('subjects');
+      table.integer('career_id').unsigned().references('id').inTable('careers').onDelete('CASCADE');
+      table.integer('subject_id').unsigned().references('id').inTable('subjects').onDelete('CASCADE');
       table.timestamps()
     })
   }

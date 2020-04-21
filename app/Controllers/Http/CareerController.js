@@ -11,9 +11,10 @@ class CareerController {
         return view.render('/personalize', { careers: careers.toJSON() })
     }
 
-    async careers({ view }) {
-        const careers = await Career.query().fetch();
+    async careers({ view, request }) {
+        const page = request.get().page || 1;
 
+        const careers = await Career.query().paginate(page, 7);
         return view.render('superadmin/careers', { careers: careers.toJSON() });
     }
 
@@ -34,17 +35,29 @@ class CareerController {
     async join({ request }) {
         try {
             const career = await Career.find(request.body.career_id)
-            console.log(request.body)
+
             await career.subjects().attach(request.body.subjects_id)
         } catch (error) {
             console.log(error)
         }
     }
-    async delete({ request, response }) {
+    async destroy({ response, request }) {
         const career = request.career;
-        console.log(request.body);
-        
-        return response.redirect('back');    }
+
+        await career.delete();        
+
+        return response.redirect('back');   
+    }
+
+    async edit({  }) {
+        const career = request.career;
+        const subjects = await Subject().query().fetch();
+        return view.render('/edit', { careers: career })
+    }
+
+    // async update({}) {
+    //     const career = request.career;
+    // }
 }
 
 module.exports = CareerController

@@ -7,8 +7,8 @@ class UserCareerSchema extends Schema {
   up () {
     this.create('user_careers', (table) => {
       table.increments();
-      table.integer('user_id').references().inTable('users');
-      table.integer('career_id').references().inTable('careers');
+      table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE');
+      table.integer('career_id').unsigned().references('id').inTable('careers').onDelete('CASCADE');
       table.timestamps()
     })
   }

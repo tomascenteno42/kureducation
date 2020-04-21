@@ -40,8 +40,10 @@ Route.group(() => {
     Route.get('/', 'CareerController.careers');
     Route.post('/', 'CareerController.store');
     Route.get('/:id/subjects', 'CareerController.joinForm');
-    Route.delete('/:id', 'CareerController.delete');
-    
+
+    Route.get('/edit/:id', 'CareerController.edit').middleware('findCareer');
+    Route.post('/edit/:id', 'CareerController.update').middleware('findCareer');
+    Route.delete('/:id', 'CareerController.destroy').middleware('findCareer');
 
 }).prefix('/careers').middleware('superadmin');
 

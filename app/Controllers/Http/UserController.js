@@ -24,10 +24,11 @@ class UserController {
     }
 
     async log({ response, request, auth, session }) {
-        const { email, password } = request.all();
+        const { username, password } = request.all();
+        console.log(username)
 
         try {
-            await auth.attempt(email, password)
+            await auth.attempt(username, password)
             return response.redirect('/')
         } catch(error) {
             session.flash({ loginError: 'Somethin went wrong with your credentials' })
