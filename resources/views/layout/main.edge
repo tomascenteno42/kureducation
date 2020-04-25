@@ -13,27 +13,6 @@
 
 <body>
   <header>
-{{--        
-    <nav class="nav">
-
-        <a href="/">Inicio</a>
-        @if(auth.user.superadmin) 
-          <a href="/careers" class="ml-auto">Careers</a>
-          <a href="/subjects" >Subjects</a>
-          <a href="/join">Join</a>
-          <a href="/logout">Log out</a>  
-        @else
-        @loggedIn
-        <a href="/personalize" class="ml-auto">Personalize</a>
-        <a href="/logout">Log out</a>  
-        @else
-        <a href="/login" class="ml-auto">Log in</a>
-        <a href="/signup">Sign up</a>
-        @endloggedIn  
-        @endif
-        
-        
-    </nav>  --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="/">Home</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,11 +25,11 @@
           @if(auth.user.superadmin)
 
           <li class="nav-item">
-            <a class="nav-link" href="/careers">Careers</a>
+            <a class="nav-link" href="/superadmin/careers">Careers</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/subjects">Subjects</a>
+            <a class="nav-link" href="/superadmin/subjects">Subjects</a>
           </li>
 
           <li class="nav-item">

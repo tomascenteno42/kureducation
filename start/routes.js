@@ -41,11 +41,12 @@ Route.group(() => {
     Route.post('/', 'CareerController.store');
     Route.get('/:id/subjects', 'CareerController.joinForm');
 
-    Route.get('/edit/:id', 'CareerController.edit').middleware('findCareer');
-    Route.post('/edit/:id', 'CareerController.update').middleware('findCareer');
+    Route.get('/:id/edit', 'CareerController.edit');
+    Route.post('/:id/edit', 'CareerController.detach');
+
     Route.delete('/:id', 'CareerController.destroy').middleware('findCareer');
 
-}).prefix('/careers').middleware('superadmin');
+}).prefix('superadmin/careers').middleware('superadmin');
 
 Route.group(() => {
     Route.get('/', 'SubjectController.create');

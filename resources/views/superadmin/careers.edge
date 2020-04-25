@@ -17,14 +17,16 @@ Kureducation - Superadmin
     @each(career in careers.data)
         <div class="career">
             <a href="{{ route()}}"></a>
-            <form action="/careers/{{ career.id }}?_method=DELETE" class="career_form" method="POST" >
+            <form action="/superadmin/careers/{{ career.id }}?_method=DELETE" class="career_form" method="POST" >
 
                 {{ csrfField() }}
 
                 <div class="card ">
                     <div class=" card-body d-flex align-items-center w-auto">
-                        <a href="/careers/edit/{{ career.id }}" class="text-dark">{{career.name}}</a>
-                        <button type="submit" class="btn btn-danger ml-auto">Delete</button>
+                        <a  class="text-dark">{{career.name}}</a>
+
+                        <a href="/superadmin/careers/{{ career.id }}/edit" type="button" class="btn btn-info ml-auto ">edit</a>
+                        <button type="submit" class="btn btn-danger ml-1">Delete</button>
                     </div>
                 </div>
             </form>    

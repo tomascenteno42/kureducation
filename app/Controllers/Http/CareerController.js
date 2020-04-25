@@ -49,10 +49,11 @@ class CareerController {
         return response.redirect('back');   
     }
 
-    async edit({  }) {
-        const career = request.career;
-        const subjects = await Subject().query().fetch();
-        return view.render('/edit', { careers: career })
+    async edit({ request, view, params }) {
+        const career = await Career.query().where('id', params.id).with('subjects').first()
+        const subjects = await Subject.query().fetch();
+        
+        return view.render('superadmin/edit', { career: career.toJSON(), subjects: subjects.toJSON()})
     }
 
     // async update({}) {
