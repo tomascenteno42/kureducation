@@ -6,14 +6,10 @@ Kureducation - Superadmin
 
 @section('content')
 
-<div class="flash-message">
-    @if(flashMessage('message'))
-        <span>{{ flashMessage('message') }}</span>
-    @endif
-</div>
-
-<div class="career_container mt-2 row">
+<div class="career_container mt-2 row mr-0">
+  
   <div class="col-5 pr-0">
+    <h1>Available careers!</h1>
     @each(career in careers.data)
         <div class="career">
             <a href="{{ route()}}"></a>
