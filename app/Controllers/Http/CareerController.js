@@ -23,7 +23,7 @@ class CareerController {
 
         session.flash({ message: `${career.name} has been created` })
         
-        return response.redirect(`/careers/${career.id}/subjects`);
+        return response.redirect('back');
     }
 
     async joinForm({ view }) {
@@ -49,7 +49,7 @@ class CareerController {
         return response.redirect('back');   
     }
 
-    async edit({ request, view, params }) {
+    async edit({ view, params }) {
 
         const career = await Career.query().where('id', params.id).with('subjects').first()
         

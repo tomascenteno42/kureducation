@@ -1,26 +1,99 @@
 @layout('layout/main')
 
-
 @section('title')
 Kureducation - Superadmin  
 @endsection
 
 @section('content')
-<div class="flash-message">
-    @if(flashMessage('message'))
-        <span>{{ flashMessage('message') }}</span>
-    @endif
+
+<div class="career_container mt-2 row mr-0 ml-2">
+  
+  <div class="col-5 pr-0">
+    <h1 class="title">Available Subjects!</h1>
+    @each(subject in subjects.data)
+        <div class="subject">
+            <a href="{{ route()}}"></a>
+            <form action="/superadmin/subjects/{{ career.id }}?_method=DELETE" method="POST" >
+
+                {{ csrfField() }}
+
+                <div class="card ">
+                    <div class=" card-body d-flex align-items-center w-auto">
+                        <a  class="text-dark">{{subject.name}}</a>
+
+                        <a href="/superadmin/subjects/{{ career.id }}/edit" type="button" class="btn btn-info ml-auto ">edit</a>
+                        <button type="submit" class="btn btn-danger ml-1">Delete</button>
+                    </div>
+                </div>
+            </form>    
+        </div>  
+
+    @endeach
+
+    <nav>
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="{{ subjects.page == 1 ? '#' : '?page=' + (subjects.page - 1) }}">
+              <span >&laquo;</span>
+            </a>
+          </li>
+          @each(page in range(1, subjects.lastPage))
+            <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+            @endeach
+            <a class="page-link" href="{{ subjects.lastPage == subjects.page ? '#' : '?page=' + (subjects.page + 1) }}">
+              <span>&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="icon_container col">
+      <a href="#" role="button" data-target="#form_modal" data-toggle="modal">
+        <svg class="bi bi-plus-square-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+    </div>
+
 </div>
-<div class="form-container">
-    
-    <form action="{{ route('SubjectController.store') }}" method="POST" class="sign_form">
 
-        {{ csrfField() }}
-        <label for="name">New Subject</label>
-        <input type="text" name="name">
-       
+<div class="modal" tabindex="-1" role="dialog" id="form_modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
 
-        <button type="submit" class="button">Create!</button>
-    </form>
-</div> 
+        <h5 class="modal-title">Create a new subject!</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+        <form action="{{ route('SubjectController.store') }}" method="POST" id="new_subject">
+
+          {{ csrfField() }}
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" class="form-control" >
+            @if(hasErrorFor('career'))
+                <div class="alert alert-warning" role="alert">
+                    {{ getErrorFor('career') }}
+                </div>
+            @endif
+          </div>          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-dark" form="new_subject">Create!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @endsection

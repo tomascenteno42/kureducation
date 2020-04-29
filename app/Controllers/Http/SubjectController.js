@@ -3,16 +3,13 @@
 const Subject = use('App/Models/Subject');
 
 class SubjectController {
-    async home({ view }) {
-        
-        const subject = new Subject;
 
-        return view.render('/index', { subject: subject.toJSON() })
-    }
+    async subjects({ view, request }) {
+        const page = request.get().page || 1;
 
-    async create({ view }) {
+        const subjects = await Subject.query().paginate(page, 6);
 
-        return view.render('superadmin/subjects')
+        return view.render('superadmin/subjects', { subjects: subjects.toJSON() })
     }
 
     async store({ response, request, session }) {
@@ -20,7 +17,7 @@ class SubjectController {
 
        session.flash({ message: `${subject.name} has been stored` });
 
-       return response.redirect('/subjects');
+       return response.redirect('back');
     }
 }
 

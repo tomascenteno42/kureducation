@@ -38,28 +38,29 @@ Route.get('/logout', async({ auth, response }) => {
 // SUPERADMIN
 Route.group(() => {
     Route.get('/', 'CareerController.careers');
-    Route.post('/', 'CareerController.store');
+    Route.post('/', 'CareerController.store').validator('newCareer');
     Route.get('/:id/subjects', 'CareerController.joinForm');
 
     Route.get('/:id/edit', 'CareerController.edit');
     Route.post('/:id/edit', 'CareerController.update').as("update");
+
+    Route.post('/:id/subjects/:subject_id', 'CareerController.attach' ).as('attach');
+    Route.delete('/:id/subjects/:subject_id', 'CareerController.detach' ).as('detach');
 
     Route.delete('/:id', 'CareerController.destroy').middleware('findCareer');
 
 }).prefix('superadmin/careers').middleware('superadmin');
 
 Route.group(() => {
-    Route.get('/', 'SubjectController.create');
+    Route.get('/', 'SubjectController.subjects');
     Route.post('/', 'SubjectController.store'); 
-}).prefix('/subjects').middleware('superadmin')
+}).prefix('superadmin/subjects').middleware('superadmin')
 
 Route.group(() => {
     Route.get('/', 'CareerController.joinForm');
     Route.post('/', 'CareerController.join'); 
 }).prefix('/join').middleware('superadmin');
 
-Route.post('/superadmin/careers/:id/subjects/:subject_id', 'CareerController.attach' ).as('attach');
-Route.delete('/superadmin/careers/:id/subjects/:subject_id', 'CareerController.detach' ).as('detach');
 
 
 

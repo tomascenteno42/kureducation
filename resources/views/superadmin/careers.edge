@@ -6,10 +6,10 @@ Kureducation - Superadmin
 
 @section('content')
 
-<div class="career_container mt-2 row mr-0">
+<div class="career_container mt-2 row mr-0 ml-2">
   
   <div class="col-5 pr-0">
-    <h1>Available careers!</h1>
+    <h1 class="title">Available careers!</h1>
     @each(career in careers.data)
         <div class="career">
             <a href="{{ route()}}"></a>
@@ -73,9 +73,9 @@ Kureducation - Superadmin
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control" >
-            @if(hasErrorFor('career'))
+            @if(hasErrorFor('name'))
                 <div class="alert alert-warning" role="alert">
-                    {{ getErrorFor('career') }}
+                    {{ getErrorFor('name') }}
                 </div>
             @endif
           </div>          
