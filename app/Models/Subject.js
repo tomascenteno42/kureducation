@@ -9,6 +9,11 @@ class Subject extends Model {
             .belongsToMany('App/Models/Career')
             .pivotTable('career_subjects');
     }
+    correlativity () {
+        return this
+            .belongsToMany('App/Models/Subject', 'subject_id', 'depends_on')
+            .pivotTable('correlativities')
+    }
 }
 
 module.exports = Subject

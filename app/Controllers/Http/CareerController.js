@@ -19,27 +19,15 @@ class CareerController {
     }
 
     async store({ request, response, session }) {
-        const career = await Career.create(request.only(['name']))
-
-        session.flash({ message: `${career.name} has been created` })
-        
-        return response.redirect('back');
-    }
-
-    async joinForm({ view }) {
-        const careers = await Career.query().fetch();
-        const subjects = await Subject.query().fetch();
-        return view.render('superadmin/career_subject', { careers: careers.toJSON(), subjects: subjects.toJSON() })
-    }
-
-    async join({ request }) {
         try {
-            const career = await Career.find(request.body.career_id)
-
-            await career.subjects().attach(request.body.subjects_id)
+            const career = await Career.create(request.only(['name']))    
+            console.log(career)
         } catch (error) {
             console.log(error)
         }
+
+        
+        return response.redirect('back');
     }
     async destroy({ response, request }) {
         const career = request.career;
@@ -56,8 +44,9 @@ class CareerController {
         const subjects = await Subject.query().whereNotIn('id', career.toJSON().subjects.map(subject => {
             return subject.id
         })).fetch();
+        console.log(subjects.toJSON())
         
-        return view.render('superadmin/edit', { career: career.toJSON(), subjects: subjects.toJSON()})
+        return view.render('superadmin/careers_edit', { career: career.toJSON(), subjects: subjects.toJSON()})
     }
 
     async update({ params, request, response }) {

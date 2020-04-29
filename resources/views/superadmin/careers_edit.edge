@@ -6,7 +6,7 @@
 
 @section('content')
   
-  <div class="row mr-0">
+  <div class="row mr-0 ml-2">
     <div class="col-5">
         <form action="{{ route('update', { id: career.id }) }}" method="POST">
 
@@ -45,7 +45,7 @@
         @endif
 
     </div>
-    <div class="col">
+    <div class="col mr-3">
         <h3 class="m-3">Available subjects</h5>
         @if(subjects.length == 0)
             <p>There are no available subjects!</p>

@@ -1,0 +1,61 @@
+@layout('layout/main')
+
+@section('title')
+  Kureducation - EDIT
+@endsection
+
+@section('content')
+<div class="row">
+    <div class="col">
+        <form action="{{ route('SubjectController.update', { id: subject.id }) }}" method="POST">
+
+            {{ csrfField() }}
+
+            <div class="form-group">
+            
+                <label for="name">Subject name</label>
+                <div class="d-flex">
+                    <input type="text" class="form-control" name="name" value="{{subject.name}}">
+                    <button type="submit" class="btn btn-warning ml-1">change</button>
+                </div>
+            </div>
+        </form>
+
+        @set('subject_id', subject.id)
+        <h2>Correlativity</h2>
+        @each(subject in subject.correlativity)
+        <form action="{{ route('SubjectController.detach', { subject_id: subject_id, depends_on: subject.id  }) }}?_method=DELETE" method="POST">
+
+                {{ csrfField() }}
+
+                <div class="w-auto mb-1 card">
+                    <div class=" card-body d-flex align-items-center w-auto">
+                        <h5 class="card-title">{{subject.name}}</h5>
+                        <button type="submit" class="btn btn-danger ml-auto">Detach</button>
+                    </div>
+                </div>
+            </form>
+
+        @endeach  
+    </div>
+    <div class="col">
+        <h2>Subjects not attached</h2>
+        
+            @each(subject in subjects)
+                <form action="{{ route('SubjectController.attach', { subject_id: subject_id, depends_on: subject.id  }) }}" method="POST">
+
+                    {{ csrfField() }}
+
+                    <div class="card">
+                        <div class="card-body d-flex">
+                            <h5 class="card-title">{{subject.name}}</h5>
+                            <button type="submit" class="btn btn-success ml-auto">Attach</button>
+                        </div>
+                    </div>  
+                </form>
+            @endeach
+    </div>
+
+   
+</div>
+@endsection
