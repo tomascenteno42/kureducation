@@ -80,6 +80,17 @@ class CareerController {
 
         return response.redirect('back')
     }
+
+    async personalize({ request, view }) {
+        const subjects = await request.career.subjects().with('correlativity').fetch();
+        
+        subjects.toJSON().map(subject => {
+            console.log(subject.correlativity)
+        })
+
+        return view.render('/personalize_career')
+
+    }
 }
 
 module.exports = CareerController

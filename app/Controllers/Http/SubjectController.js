@@ -31,12 +31,12 @@ class SubjectController {
     async edit({ view, params }) {
 
         const subject = await Subject.query().where('id', params.id).with('correlativity').first();
-        console.log(subject.toJSON().correlativity.map(subject =>{
-            return subject.id
-        }))
+        
         const subjects = await Subject.query().whereNotIn('id', subject.toJSON().correlativity.map(subject => {
             return subject.id
         })).whereNot('id', subject.id).fetch();
+        
+        
         
 
         return view.render('superadmin/subjects_edit', { subjects: subjects.toJSON(), subject: subject.toJSON()})
@@ -80,6 +80,7 @@ class SubjectController {
 
         return response.redirect('back')
     }
+
 
     
 }

@@ -8,17 +8,12 @@ Kureducation - personalize
 
 @section('content')
 <div class="container">
-    <form action="" class="personalize_f">
-        <label for="career">Select the career</label>
-        <select id="careers">
-
-        @each(career in careers)
-            <option value="{{ career.id }}">{{ career.name  }} </option>
-        @endeach
-    </select>
-
-        <button type="submit" class="button">Calculate!</button>
+    @each(career in careers)
+    <form action="/personalize/{{career.id}}">
+        <span>{{career.name}}</span>
+        <button type="submit">Calculate!</button>
     </form>
+    @endeach
 </div>
 
 <div class="programs">

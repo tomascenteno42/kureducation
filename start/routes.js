@@ -55,7 +55,8 @@ Route.group(() => {
     Route.get('/', 'SubjectController.subjects');
     Route.post('/', 'SubjectController.store'); 
     Route.post('/:id', 'SubjectController.update');
-    Route.delete('/:id', 'SubjectController.destroy');
+
+    Route.delete('/:id', 'SubjectController.destroy').middleware('findSubject');
 
     Route.get('/:id/edit', 'SubjectController.edit');
     Route.post('/:id/edit', 'SubjectController.update');
@@ -66,6 +67,7 @@ Route.group(() => {
 
 }).prefix('superadmin/subjects').middleware('superadmin')
 
+Route.get('/personalize/:id', 'CareerController.personalize').middleware('findCareer');
 
 
 

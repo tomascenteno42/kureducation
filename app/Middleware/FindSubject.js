@@ -13,7 +13,7 @@ class FindSubject {
    */
   async handle ({ request, params }, next) {
     
-    const subject = await subject.find(params.id);
+    const subject = await Subject.find(params.id);
 
     request.subject = subject;
 

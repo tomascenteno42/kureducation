@@ -12,7 +12,7 @@ class UserController {
         return view.render('/auth/sign',{ careers: careers.toJSON() })
     }
 
-    async sign({ response, request, auth, view }) {
+    async sign({ response, request, auth }) {
         
         const user = await User.create(request.only(['username', 'email', 'password']))
         const career = await Career.find(request.body.career_id)
