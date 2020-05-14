@@ -2,13 +2,15 @@
 
 const Career = use('App/Models/Career');
 const Subject = use('App/Models/Subject');
-
+const User = use('App/Models/User');
+const Database = use('Database')
 class CareerController {
 
-    async home({ view }) {
+    async home({ view, auth }) {
+        const userCareers = await auth.user.careers().fetch();
 
-        const careers = await Career.query().fetch();
-        return view.render('/personalize', { careers: careers.toJSON() })
+        return view.render('/personalize', { careers: userCareers.toJSON() })
+
     }
 
     async careers({ view, request }) {
@@ -82,13 +84,13 @@ class CareerController {
     }
 
     async personalize({ request, view }) {
-        const subjects = await request.career.subjects().with('correlativity').fetch();
-        
-        subjects.toJSON().map(subject => {
-            console.log(subject.correlativity)
-        })
+        const career = request.career;
 
-        return view.render('/personalize_career')
+        const subjects = await career.subjects().with('correlativity').fetch();
+        const sortedSubjects = subjects.toJSON().sort((a, b) => b.correlativity.length - a.correlativity.length)
+        console.log(sortedSubjects)
+
+        return view.render('/personalize_career', { subjects: sortedSubjects })
 
     }
 }

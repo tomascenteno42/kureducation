@@ -25,7 +25,6 @@ class UserController {
 
     async log({ response, request, auth, session }) {
         const { username, password } = request.all();
-        console.log(username)
 
         try {
             await auth.attempt(username, password)

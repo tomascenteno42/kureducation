@@ -1,0 +1,47 @@
+@layout('layout/main');
+
+
+@section('title')
+Kureducation - personalize
+@endsection
+
+
+@section('content')
+
+<div class="row mt-3">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header bg-danger">
+                UBA program
+            </div>
+            <div class="card-body">
+                <ul>
+                    @each(subject in subjects)
+                        <li>{{ subject.name }}</li>
+
+                        <ol class="ml-3">
+                            @each(s in subject.correlativity)
+                                <li>{{ s.name }}</li>
+                            @endeach
+                        </ol>
+                        
+                    @endeach
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+                
+        <div class="card">
+            <div class="card-header bg-success">
+                Our program
+            </div>
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection

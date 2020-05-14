@@ -7,17 +7,27 @@ Kureducation - personalize
 
 
 @section('content')
-<div class="container">
-    @each(career in careers)
-    <form action="/personalize/{{career.id}}">
-        <span>{{career.name}}</span>
-        <button type="submit">Calculate!</button>
-    </form>
-    @endeach
-</div>
 
-<div class="programs">
-    <div class="uba_program"></div>
-    <div class="new_program"></div>
-</div>
+
+    <div class="row mt-3">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header" >
+                    Select the career!
+                </div>
+                <div class="card-body">
+                    @each(career in careers)
+                        <form action="/personalize/{{career.id}}">
+                            <ul style="list-style: none ;" class="d-flex">
+                                <li style="vertical-align:middle;">{{career.name}}</li>
+                                <button type="submit" class="btn btn-outline-success ml-auto">Calculate!</button>
+                            </ul>
+                        </form>
+                    @endeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @endsection
